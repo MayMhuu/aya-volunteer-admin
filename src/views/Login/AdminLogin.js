@@ -4,8 +4,6 @@ import request from '../../services/request.js';
 import api from '../../services/api.js';
 import local from '../../services/local.js';
 import helper from '../../services/helper';
-import Loader from '../../controls/Loader';
-import config from '../../services/config';
 import i18next from 'i18next';
 import './custom.css';
 import AdminIcon from '@material-ui/icons/VerifiedUser';
@@ -19,6 +17,7 @@ class AdminLogin extends Component {
             password: '',
             loading: true,
         }
+        this.onLoginClick = this.onLoginClick.bind(this)
     }
     componentDidMount() {
         this.loadCaptcha();
@@ -28,20 +27,24 @@ class AdminLogin extends Component {
     }
     async onLoginClick(e) {
         e.preventDefault();
+        console.log("Event", e)
         try {
-        
+
             if (!this.state.username)
                 return helper.alert(i18next.t('Plese enter username'));
             if (!this.state.password)
                 return helper.alert(i18next.t('Plese enter password'));
-          
-                //call api
-            let rs = await api.login({ username: this.state.username, password: this.state.password, accountKitToken: this.state.accountKitToken });
-            if (!rs || (rs && rs.err != 200))
-                return helper.alert(i18next.t(rs.message));
-            local.set('session', rs.data.token);
-            local.set('user', JSON.stringify(rs.data.userInfo));
-        // go to dashboard
+
+            //call api
+            //  let rs = await api.login({ username: this.state.username, password: this.state.password, accountKitToken: this.state.accountKitToken });
+            //  if (!rs || (rs && rs.err != 200))
+            //      return helper.alert(i18next.t(rs.message));
+            //  local.set('session', rs.data.token);
+            // local.set('user', JSON.stringify(rs.data.userInfo));
+            // go to dashboard
+            console.log("Hi")
+            local.set('session', 'waer345678');
+            this.props.history.push('/member-history');
 
         } catch (err) {
             console.log("Error", err)
@@ -51,11 +54,6 @@ class AdminLogin extends Component {
     };
 
     async resetPass(e) {
-    }
-
-    async handleAccountKitResponse(result) {
-        console.log('on token', result);
-        this.setState({ accountKitToken: result.code });
     }
 
     render() {
@@ -71,12 +69,10 @@ class AdminLogin extends Component {
                                         <Row>
 
                                             <Col md={12}>
-                                               
                                             </Col>
                                         </Row>
 
-
-                                        <form onSubmit={this.onLoginClick.bind(this)} autoComplete='off'>
+                                        <form onSubmit={this.onLoginClick} autoComplete='off'>
                                             {/* <InputGroup className="mb-3">
                                                 <InputGroupAddon addonType="prepend">
                                                     <InputGroupText>
@@ -87,8 +83,8 @@ class AdminLogin extends Component {
                                             <InputGroup className="mb-3">
                                                 <InputGroupAddon addonType="prepend">
                                                     <InputGroupText>
-                                           
-                                                        <AdminIcon style={{ 'color': "#20a8d8" ,height:'20px'}} />
+
+                                                        <AdminIcon style={{ 'color': "#20a8d8", height: '20px' }} />
                                                     </InputGroupText>
                                                 </InputGroupAddon>
                                                 <Input type="text" placeholder={'User Name'} value={this.state.username} onChange={evt => this.setState({ username: evt.target.value })} />
@@ -96,7 +92,7 @@ class AdminLogin extends Component {
                                             <InputGroup className="mb-3">
                                                 <InputGroupAddon addonType="prepend">
                                                     <InputGroupText>
-                                                        <LockIcon style={{ 'color': "#20a8d8" ,height:'20px'}} />
+                                                        <LockIcon style={{ 'color': "#20a8d8", height: '20px' }} />
                                                     </InputGroupText>
                                                 </InputGroupAddon>
                                                 <Input type="password" placeholder={'Password'} value={this.state.password} autoComplete='off' onChange={evt => this.setState({ password: evt.target.value })} />
@@ -106,7 +102,7 @@ class AdminLogin extends Component {
                                                 <Col md={6}>
                                                 </Col>
                                                 <Col md={6}>
-                                                    
+
                                                 </Col>
                                             </Row>
                                             <Row>

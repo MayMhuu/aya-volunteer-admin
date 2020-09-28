@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 // Styles
-// CoreUI Icons Set
+// CoreUI Icons Set//
 //import '@coreui/icons/css/coreui-icons.min.css';
-
+//import "~simple-line-icons/scss/simple-line-icons";
 // Import Flag Icons Set
 import 'flag-icon-css/css/flag-icon.min.css';
 // Import Font Awesome Icons Set
@@ -15,16 +15,20 @@ import 'react-image-lightbox/style.css';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 
 import "react-datepicker/dist/react-datepicker.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './index.css';
 import './scss/_custom.scss';
 import Login from './views/Login/AdminLogin';
+import { DefaultLayout } from './containers';
 
 class App extends Component {
   render() {
     return (
       <HashRouter>
         <Switch>
-          <Route exact path="/" name="Login Page" component={Login} />
+          <Route exact path="/login" name="Login Page" component={Login} />
+          <Route path="/" name="Home" component={DefaultLayout} />
         </Switch>
       </HashRouter>
     );

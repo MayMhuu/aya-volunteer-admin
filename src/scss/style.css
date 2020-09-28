@@ -4804,7 +4804,7 @@ button.bg-dark:focus {
 
 @media (min-width: 992px) {
   .d-lg-none {
-    display: none !important; }
+    display: none !important; background-color: #008c69;}
   .d-lg-inline {
     display: inline !important; }
   .d-lg-inline-block {
@@ -11566,7 +11566,7 @@ footer a, .breadcrumb a {
   height: 55px;
   padding: 0;
   margin: 0;
-  background-color: #930f0f;
+  background-color: #68a0fc;
   border-bottom: 1px solid #c8ced3; }
 
 .navbar-nav .nav-link {
