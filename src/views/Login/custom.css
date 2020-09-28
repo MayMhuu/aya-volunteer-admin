@@ -1,0 +1,9 @@
+.swal2-popup{padding: 6px 24px;border-radius: 0;width:29em;}
+.swal2-title{font-size:24px;}
+.swal2-icon {width: 4em;height: 4em;margin: 1em 1em;}
+.swal2-styled.swal2-confirm{border-radius:0;font-size:14px;}
+
+.custom_icon{
+    color: "#20a8d8" ;
+    height:"20px"
+}
