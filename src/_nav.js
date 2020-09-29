@@ -10,6 +10,11 @@ export default {
       name: 'Form Managment',
       url: '/form',
       icon: 'fa fa-building-o',
+    },{
+      name: 'User History',
+      url: '/user-history',
+      icon: 'fa fa-user',
     }
+
   ]
 };

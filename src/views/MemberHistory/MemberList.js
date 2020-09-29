@@ -21,7 +21,6 @@ import api from '../../services/api';
 import shareData from '../../services/shareData';
 import ReactNotification from 'react-notifications-component'
 import { store } from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css';
 import ReactLoading from 'react-loading';
 import DatePicker from "react-datepicker";
 import testdata from './test-data.js';
