@@ -18,6 +18,7 @@ import Select from 'react-select'
 import config from '../../services/config';
 import local from '../../services/local';
 import api from '../../services/api';
+import helper from '../../services/helper';
 import shareData from '../../services/shareData';
 import ReactNotification from 'react-notifications-component'
 import { store } from 'react-notifications-component';
@@ -72,7 +73,33 @@ const columns1 = [
   },
 ];
 
-
+const customStyles = {
+  title: {
+    style: {
+      fontColor: 'red',
+      fontWeight: '10',
+    }
+  },
+  rows: {
+    style: {
+      minHeight: '72px', // override the row height
+    }
+  },
+  headCells: {
+    style: {
+      fontSize: '20px',
+      fontWeight: '500',
+      textTransform: 'uppercase',
+      paddingLeft: '0 8px'
+    },
+  },
+  cells: {
+    style: {
+      fontSize: '17px',
+      paddingLeft: '0 8px',
+    },
+  },
+};
 const objUser = local.get('user');
 
 export default class MemberList extends Component {
@@ -80,11 +107,6 @@ export default class MemberList extends Component {
     super(props);
     this.state = {
       data: [],
-      services: [],
-      shops: [],
-      shop: "",
-      submerchants: [],
-      submerchant: '',
       loading: false,
       totalRows: 0,
       perPage: 10,
@@ -93,11 +115,11 @@ export default class MemberList extends Component {
       error: null,
       txnCode: "",
       phone: "",
-      serviceId: "",
       createdAt: moment().format("YYYY-MM-DD"),
       startDate: "",
       endDate: "",
-      name: ""
+      name: "",
+      listMember:[]
     };
     this.table = {
       columns: [
@@ -110,11 +132,11 @@ export default class MemberList extends Component {
               Name: d.name
             }
           ),
-        
+
         },
         {
           name: 'PhoneNumber',
-          selector: 'phoneNumber',
+          selector: 'phone',
           sortable: true,
         },
         {
@@ -123,28 +145,19 @@ export default class MemberList extends Component {
           sortable: true,
         },
         {
-          name: 'Address',
-          selector: 'address',
-          sortable: true,
-        },
-        {
           name: 'Status',
           selector: 'status',
           sortable: true,
-          
+
         },
         {
-          name: 'Action', right: true,
+          name: 'Action',
           cell: row => <Button className="btn btn-sm" tag="a" href={'#/member-detail/' + row.id}><i className="fa fa-eye"></i> Detail</Button>
         }
       ],
-      data:testdata
-
     }
     this.keyPressed = this.keyPressed.bind(this);
   }
-
-  stautses = [{ name: "done" }, { name: "refunded" }, { name: "pending" }, { name: "cancelled" }, { name: "failed" }, { name: "reversed" }, { name: "expired" }, { name: "refused" }, { name: "redeemed" }];
 
   keyPressed(event) {
     if (event.key === "Enter") {
@@ -159,15 +172,19 @@ export default class MemberList extends Component {
 
 
   async componentDidMount() {
-
+    let result = await api.memberList();
+    console.log("Response", result);
+    if (!result || (result && result.code != 200))
+      return helper.alert(result.message);
+    this.setState({
+      loading: false,
+      listMember: result.data
+    });
   }
 
   render() {
-    const { loading, isLoaded, data, totalRows } = this.state;
-    const tableData = {
-      columns1,
-      data,
-    };
+    const { loading, isLoaded, data, totalRows,listMember } = this.state;
+
     return (
       <div className="animated fadeIn">
         <Row>
@@ -247,21 +264,11 @@ export default class MemberList extends Component {
               <div className="card-body label-span-style">
                 <Row>
                   <Col>
-                    {/* <DataTable
-                      title="Member List"
-                      columns={columns}
-                      data={data}
-                      progressPending={loading}
-                      pagination
-                      paginationServer
-                      paginationTotalRows={totalRows}
-                      onChangeRowsPerPage={this.handlePerRowsChange}
-                      onChangePage={this.handlePageChange}
-                    /> */}
                     <DataTableExtensions
                       columns={this.table.columns}
-                      data={this.table.data}
-                      filterPlaceHolder="Dayımlar"
+                      data={this.state.listMember}
+                      filterPlaceHolder="Filter"
+                      customStyles={customStyles}
                     >
                       <DataTable
                         noHeader
@@ -269,6 +276,7 @@ export default class MemberList extends Component {
                         defaultSortAsc={false}
                         pagination
                         highlightOnHover
+                        customStyles={customStyles}
                       />
                     </DataTableExtensions>
                   </Col>

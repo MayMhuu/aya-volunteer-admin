@@ -1,10 +1,9 @@
 export default {
   items: [
-   
     {
       name: 'Member History',
       url: '/member-history',
-      icon: 'fa fa-building-o',
+      icon: 'fa fa-user',
     },
     {
       name: 'Form Managment',

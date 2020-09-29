@@ -1,6 +1,6 @@
 import moment from 'moment';
 let config = {
-    host: 'http://10.9.255.77:1340',
+    host: 'https://ayavapp.herokuapp.com',
     defaultAvatar: "https://www.kindpng.com/picc/m/130-1300217_user-icon-member-icon-png-transparent-png.png",
     Urls3: "https://dev-ayaloyalty-storage.s3-ap-southeast-1.amazonaws.com/",
     S3Location: "https://ayaplus-backend-dev.s3.amazonaws.com/",

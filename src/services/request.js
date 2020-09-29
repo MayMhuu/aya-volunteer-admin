@@ -29,7 +29,7 @@ request.request = async (url, data, headers, method = 'POST') => {
     body: JSON.stringify(data), // data can be `string` or {object}!
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': `Bearer ${Local.get('session') || 'customer'}`
+      'Authorization': `Bearer ${Local.get('session')}`
     }
   };
   option.headers = Object.assign({}, option.headers, headers);

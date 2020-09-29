@@ -31,59 +31,22 @@ class DefaultHeader extends Component {
     return (
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
-        <AppNavbarBrand
+        <p className='mr-3'>Ayeyarwady Volunteer</p>
+        {/* <AppNavbarBrand
           full={{ src: logo, width: 145, height: 35, alt: 'CoreUI Logo' }}
           minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}
-        />
-        <AppSidebarToggler className="d-md-down-none" display="lg" />
+        /> */}
+        <AppSidebarToggler className="d-md-down-none" display="lg" style={{ "padding-bottom": '10px' }} />
 
-        {/* <Nav className="d-md-down-none" navbar>
-          <NavItem className="px-3">
-            <NavLink href="/">Dashboard</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink href="#/users">Users</NavLink>
-          </NavItem>
-          <NavItem className="px-3">
-            <NavLink href="#">Settings</NavLink>
-          </NavItem>
-        </Nav> */}
         <Nav className="ml-auto" navbar>
-          {/* <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-list"></i></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-location-pin"></i></NavLink>
-          </NavItem> */}
-
-
           <AppHeaderDropdown direction="down">
-
             <DropdownToggle nav>
-              {/* <p className='mr-3'>Hi {this.props.userInfo.username} !</p> */}
-              <img className="img-avatar" src="https://www.kindpng.com/picc/m/130-1300217_user-icon-member-icon-png-transparent-png.png" alt="Card image cap" />
+              {/* <p className='mr-3'>Ayeyarwady Volunteer</p> */}
+              {/* <img className="img-avatar" src="https://www.kindpng.com/picc/m/130-1300217_user-icon-member-icon-png-transparent-png.png" alt="Card image cap" /> */}
               {/* <img src={this.props.userInfo.avatar} className="img-avatar" alt="admin@bootstrapmaster.com" /> */}
             </DropdownToggle>
 
             <DropdownMenu right >
-              {/* <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
-              <DropdownItem><i className="fa fa-bell-o"></i> Updates<Badge color="info">42</Badge></DropdownItem>
-              <DropdownItem><i className="fa fa-envelope-o"></i> Messages<Badge color="success">42</Badge></DropdownItem>
-              <DropdownItem><i className="fa fa-tasks"></i> Tasks<Badge color="danger">42</Badge></DropdownItem>
-              <DropdownItem><i className="fa fa-comments"></i> Comments<Badge color="warning">42</Badge></DropdownItem>
-              <DropdownItem header tag="div" className="text-center"><strong>Settings</strong></DropdownItem> */}
-              {/*<DropdownItem tag={Link} to='/profile?page=43'>
-                <i className="fa fa-user"></i> Profile
-
-              </DropdownItem>*/}
-              {/* <DropdownItem><i className="fa fa-wrench"></i> Settings</DropdownItem>
-              <DropdownItem><i className="fa fa-usd"></i> Payments<Badge color="secondary">42</Badge></DropdownItem>
-              <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem><i className="fa fa-shield"></i> Lock Account</DropdownItem> */}
               <DropdownItem onClick={this.onLogoutClick.bind(this)}><i className="fa fa-lock"></i>Log Out</DropdownItem>
             </DropdownMenu>
           </AppHeaderDropdown>

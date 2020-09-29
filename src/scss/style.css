@@ -11595,7 +11595,7 @@ footer a, .breadcrumb a {
 .card-title {
   font-weight: bold;
   opacity: .9;
-  color: #932c12;
+  color: #2f6be3;
   text-transform: capitalize;
   line-height: 24px; }
 
@@ -11678,7 +11678,10 @@ footer a, .breadcrumb a {
   z-index: 9998 !important; }
 
 p {
-  color: red; }
+  color: #e7f0f4;
+  font-weight: bold;
+  font-size: 20px;
+}
 
 .logo {
   width: 90px; }

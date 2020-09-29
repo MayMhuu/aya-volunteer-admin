@@ -4,7 +4,10 @@ import {
   Button,
 } from 'reactstrap';
 import { ColumnGen } from '../Utils';
-import api from '../../services/api';
+import api from '../../services/api.js';
+import local from '../../services/local.js';
+import helper from '../../services/helper';
+import request from '../../services/request';
 
 
 class MemberDetail extends Component {
@@ -14,7 +17,8 @@ class MemberDetail extends Component {
       isLoaded: false,
       error: null,
       data: {},
-      id: props.match.params.id
+      id: props.match.params.id,
+      status: null,
     };
     this.goBack = this.goBack.bind(this);
   }
@@ -24,19 +28,71 @@ class MemberDetail extends Component {
   }
 
   async componentDidMount() {
-    const { perPage } = this.state;
 
     this.setState({ loading: true });
 
     let objParams = {
       id: this.state.id,
     }
-    // let result = await api.detailMember(objParams);
+    let result = await api.memberDetail(objParams);
+    console.log("Response", result);
+    if (!result || (result && result.code != 200))
+      return helper.alert(result.message);
 
-    // this.setState({
-    //   loading: false,
-    //   data: result.data
-    // });
+    this.setState({
+      loading: false,
+      data: result.data,
+      status: result.data.status
+    });
+  }
+
+  async approve() {
+    try {
+
+      // call api
+      let rs = await api.approve({ id: this.state.id });
+      console.log("Response", rs);
+      if (!rs || (rs && rs.code != 200))
+        return helper.alert(rs.message);
+
+      //data bind
+      this.getDetail(this.state.id);
+
+    } catch (err) {
+      console.log("Error", err)
+      helper.alert(err.message);
+    }
+  };
+
+
+  async reject() {
+    try {
+      // call api
+      console.log("ID", this.state.id)
+      let rs = await api.reject({ id: this.state.id });
+      console.log("Response", rs);
+      if (!rs || (rs && rs.code != 200))
+        return helper.alert(rs.message);
+      //data bind
+      this.getDetail(this.state.id);
+
+    } catch (err) {
+      console.log("Error", err)
+      helper.alert(err.message);
+    }
+  };
+
+  async getDetail(id) {
+    let result = await api.memberDetail({ id: id });
+    console.log("Response", result);
+    if (!result || (result && result.code != 200))
+      return helper.alert(result.message);
+
+    this.setState({
+      loading: false,
+      data: result.data,
+      status: result.data.status
+    });
   }
 
   render() {
@@ -45,13 +101,21 @@ class MemberDetail extends Component {
     if (!data) {
       firstColumnList = [];
     } else {
-
       firstColumnList = [
-        { label: "Name", data: 'May', colType: null },
-        { label: "Phone Number", data: '09234324324', colType: null },
-        { label: "Email", data: 'may@gmail.com', colType: null },
-        { label: "Address", data: 'Insein', colType: null },
-        { label: "Status", data: 'Pending', colType: null },
+        { label: "Name", data: data.name, colType: null },
+        { label: "Phone Number", data: data.phone, colType: null },
+        { label: "Email", data: data.email, colType: null },
+        {
+          label: "Status", data:
+            <div class="row ">
+              <label class="col-sm-2 col-form-label" >Status</label>
+              <Button class="col-sm-10" color={data.status === 'approved' ? "success" : "danger"} size="sm">
+                <i className="fa fa-check"></i>
+                {data.status}
+              </Button>
+            </div>
+          , colType: 'callComponent'
+        },
       ];
     }
 
@@ -73,20 +137,20 @@ class MemberDetail extends Component {
             </div>
           </div>
 
-          <div className="card-body label-span-style">
+          <div className="card-body">
             <div className="row">
               <div className="col-lg-4">
-              <div className="row">
-                  <div className="col-lg-6">
-                  <Button type='button' style={{ width: '100px' }} block onClick={() => { this.approve() }} >{'Approve'}</Button>
+                <div className="row">
+                  <div className="col-lg-3">
+                    <Button type='button' disabled={this.state.status === 'rejected'  || this.state.status === 'approved' ? true : false} style={{ width: '100px' }} block onClick={() => { this.approve() }} >{'Approve'}</Button>
                   </div>
-                  <div className="col-lg-6">
-                  <Button type='button' style={{ width: '100px' }} block onClick={() => { this.approve() }} >{'Reject'}</Button>
+                  <div className="col-lg-3">
+                    <Button type='button' disabled={this.state.status === 'rejected' || this.state.status === 'pending' ? true : false} style={{ width: '100px', paddingLeft: '2px' }} block onClick={() => { this.reject() }} >{'Reject'}</Button>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4">
-                
+
               </div>
               <div className="col-lg-4">
 
