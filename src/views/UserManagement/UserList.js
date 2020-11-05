@@ -15,6 +15,7 @@ import ReactLoading from 'react-loading';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import './custom.css';
 import axios from 'axios';
+import { Form as FormIO } from 'react-formio'
 
 const objUser = local.get('user');
 
@@ -68,7 +69,7 @@ export default class UserList extends Component {
 
         {
           name: 'Status',
-          selector : 'status',
+          selector: 'status',
           sortable: true,
         },
         {
@@ -217,23 +218,9 @@ export default class UserList extends Component {
               <Modal.Title>Admin Registration Form</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="text" placeholder="Name" value={this.state.name} onChange={e => this.setState({ name: e.target.value })} />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="text" placeholder="User Name" value={this.state.username} onChange={e => this.setState({ username: e.target.value })} />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail"  >
-                  <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} />
-                </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Control type="text" placeholder="Phone" value={this.state.phone} onChange={e => this.setState({ phone: e.target.value })} />
-                </Form.Group>
-                <Form.Group controlId="formBasicPassword" >
-                  <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
-                </Form.Group>
-              </Form>
+              <FormIO
+                src="https://soaigljodahrapg.form.io/register"
+              />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary"
@@ -247,6 +234,7 @@ export default class UserList extends Component {
               <Button variant="primary" onClick={e => this.setState({ modal: false })}>Close</Button>
             </Modal.Footer>
           </Modal>
+
         </div>
       </div>
     );

@@ -14,7 +14,11 @@ export default {
       name: 'User History',
       url: '/user-history',
       icon: 'fa fa-user',
-    }
-
+    },
+    {
+      name: 'Volunteer',
+      url: '/volunteer-history',
+      icon: 'fa fa-user',
+    },
   ]
 };

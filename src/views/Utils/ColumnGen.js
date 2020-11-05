@@ -9,10 +9,10 @@ export default class ColumnGen extends Component {
       // <label key={obj.label} className="form-control-1">
       //   <span>{obj.label}</span>   {obj.data}
       // </label>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{obj.label}</label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext"  value={obj.data}></input>
+      <div className="form-group row">
+        <label className="col-sm-2 col-form-label">{obj.label}</label>
+        <div className="col-sm-10">
+          <input type="text" readOnly className="form-control-plaintext"  value={obj.data}></input>
         </div>
       </div>
     );
