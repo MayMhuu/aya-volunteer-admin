@@ -95,7 +95,7 @@ class DefaultLayout extends Component {
                       : (null);
                   },
                   )}
-                  <Redirect from="/" to="/member-history" />
+                  <Redirect from="/admin" to="/admin/member-history" />
                 </Switch>
               </Suspense>
             </Container>

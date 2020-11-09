@@ -71,7 +71,7 @@ export default class VolunteerList extends Component {
         const config = {
             method: "POST",
             url: 'https://ayavapp.herokuapp.com/admin/getVolunteerList',
-            headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtoYW50c2l0aHUiLCJpYXQiOjE2MDQ1NTQ2MTAsImV4cCI6MTYwNDY0MTAxMH0.X3mDt6nxTQdjjX1rsZ38-YesTuqBf5eAVmUdyaNo90E" }
+            headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDQ3Mjc2MzAsImV4cCI6MTYwNDgxNDAzMH0.jtQ2rClZ5Dxhoce8H54AGSvbsDN8tGGNXcnTQtMqeYQ" }
         }
 
         axios(config)
@@ -91,14 +91,14 @@ export default class VolunteerList extends Component {
                         name: 'Name',
                         selector: 'name',
                         sortable: true,
-                        
+
                     }, {
                         name: 'Address',
                         selector: 'address',
                         sortable: true,
                         cellExport: d => (
                             {
-                                
+
                             }
                         ),
                     },
@@ -108,7 +108,7 @@ export default class VolunteerList extends Component {
                         sortable: true,
                         cellExport: d => (
                             {
-                                
+
                             }
                         ),
                     },
@@ -118,7 +118,7 @@ export default class VolunteerList extends Component {
                         sortable: true,
                         cellExport: d => (
                             {
-                                
+
                             }
                         ),
                     },
@@ -129,7 +129,7 @@ export default class VolunteerList extends Component {
                         sortable: true,
                         cellExport: d => (
                             {
-                                
+
                             }
                         ),
                     },
@@ -137,7 +137,7 @@ export default class VolunteerList extends Component {
                         name: 'Action', right: true,
                         cellExport: d => (
                             {
-                                
+
                             }
                         ),
                         cell: row => <Button className="btn btn-sm" tag="a" href={'#/volunteer-detail/' + row.id}><i className="fa fa-eye"></i> Detail</Button>
@@ -168,6 +168,7 @@ export default class VolunteerList extends Component {
                                 </Col>
                                 <Col xs="12" md="2" className="create-btn">
                                     <Button color="secondary" size="md"
+                                        tag="a" href={'#/volunteer-register'}
                                         onClick={e => this.setState({ modal: true })}
                                     ><i className="fa fa-plus"></i> Create Volunteer</Button>
                                 </Col>
@@ -198,6 +199,8 @@ export default class VolunteerList extends Component {
                                                 columns={table.columns}
                                                 data={table.data}
                                                 filterPlaceHolder="Dayımlar"
+                                                export={false}
+                                                print ={false}
                                             >
                                                 <DataTable
                                                     noHeader
@@ -242,7 +245,7 @@ export default class VolunteerList extends Component {
 }
 
 
-export const UserListStory = () => {
+export const VolunteerListStory = () => {
     storiesOf('Pagination', module)
         .add('Server-Side', () => <VolunteerList />)
 }

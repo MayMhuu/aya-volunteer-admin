@@ -21,6 +21,8 @@ import './index.css';
 import './scss/_custom.scss';
 import Login from './views/Login/AdminLogin';
 import { DefaultLayout } from './containers';
+import  RegisterLayout  from './containers/RegisterLayout/RegisterLayout';
+
 
 class App extends Component {
   render() {
@@ -28,7 +30,9 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route exact path="/login" name="Login Page" component={Login} />
-          <Route path="/" name="Home" component={DefaultLayout} />
+          <Route path="/admin" name="Admin" component={DefaultLayout} />
+          <Route path="/" name="Home" component={RegisterLayout} />
+
         </Switch>
       </HashRouter>
     );
