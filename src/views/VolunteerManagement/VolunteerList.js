@@ -68,10 +68,13 @@ export default class VolunteerList extends Component {
     }
 
     async componentDidMount() {
+        const accessToken = localStorage.getItem('accessToken');
+        const auth = `Bearer ${accessToken}`;
+
         const config = {
             method: "POST",
             url: 'https://ayavapp.herokuapp.com/admin/getVolunteerList',
-            headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDQ3Mjc2MzAsImV4cCI6MTYwNDgxNDAzMH0.jtQ2rClZ5Dxhoce8H54AGSvbsDN8tGGNXcnTQtMqeYQ" }
+            headers: { "Authorization": auth}
         }
 
         axios(config)
@@ -199,8 +202,9 @@ export default class VolunteerList extends Component {
                                                 columns={table.columns}
                                                 data={table.data}
                                                 filterPlaceHolder="Dayımlar"
-                                                export={false}
-                                                print ={false}
+                                                export={true}
+                                                exportHeaders = {true}
+                                                print={false}
                                             >
                                                 <DataTable
                                                     noHeader

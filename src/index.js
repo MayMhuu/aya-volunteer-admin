@@ -23,14 +23,12 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import App from './App';
-import configureStore from './store';
 
-let store = configureStore();
-ReactDOM.render(<Provider store={store}>
+ReactDOM.render(
     <React.Fragment>
         <App />
     </React.Fragment>
-</Provider>, document.getElementById('root'));
+, document.getElementById('root'));
 // disable ServiceWorker
 // registerServiceWorker();
 

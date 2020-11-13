@@ -119,8 +119,11 @@ export default class UserList extends Component {
   }
 
   async componentDidMount() {
+    const accessToken = localStorage.getItem('accessToken');
+    const auth = `Bearer ${accessToken}`;
+
     const config = {
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtoYW50c2l0aHUiLCJpYXQiOjE2MDEzNTA2OTEsImV4cCI6MTYwMTQzNzA5MX0.P5Ar0nrSA_9RdH3fqjcdCyvAIS-pAJUtbwIkYoXkTQk" }
+      headers: { "Authorization": auth }
     }
 
     axios.get('https://ayavapp.herokuapp.com/admin/getAdminList', config)
@@ -191,6 +194,8 @@ export default class UserList extends Component {
                     <DataTableExtensions
                       columns={this.table.columns}
                       data={this.state.data}
+                      exportHeaders = {false}
+                      export = {true}
                       filterPlaceHolder="Dayımlar"
                     >
                       <DataTable

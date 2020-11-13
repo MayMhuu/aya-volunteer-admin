@@ -87,10 +87,13 @@ export default class MemberList extends Component {
 
 
   async componentDidMount() {
+    const accessToken = localStorage.getItem('accessToken');
+    const auth = `Bearer ${accessToken}`;
+
     const config = {
       method: "POST",
       url: 'https://ayavapp.herokuapp.com/admin/volunteerCredentials',
-      headers: { "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDQ3Mjc2MzAsImV4cCI6MTYwNDgxNDAzMH0.jtQ2rClZ5Dxhoce8H54AGSvbsDN8tGGNXcnTQtMqeYQ" }
+      headers: { "Authorization": auth }
     }
 
     axios(config)
@@ -217,6 +220,7 @@ export default class MemberList extends Component {
                         data={table.data}
                         filterPlaceHolder="Dayımlar"
                         export = {true}
+                        exportHeaders= {true}
                       >
                         <DataTable
                           noHeader

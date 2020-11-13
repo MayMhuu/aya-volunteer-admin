@@ -5,7 +5,6 @@ import {
 } from 'reactstrap';
 import { ColumnGen } from '../Utils';
 import axios from 'axios';
-import nodemailer from 'nodemailer';
 
 
 class VolunteerDetail extends Component {

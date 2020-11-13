@@ -3,21 +3,21 @@ export default {
    
     {
       name: 'Member History',
-      url: '/member-history',
+      url: '/admin/member-history',
       icon: 'fa fa-building-o',
     },
-    {
-      name: 'Form Managment',
-      url: '/form',
-      icon: 'fa fa-building-o',
-    },{
-      name: 'User History',
-      url: '/user-history',
-      icon: 'fa fa-user',
-    },
+    // {
+    //   name: 'Form Managment',
+    //   url: '/form',
+    //   icon: 'fa fa-building-o',
+    // },{
+    //   name: 'User History',
+    //   url: '/admin/user-history',
+    //   icon: 'fa fa-user',
+    // },
     {
       name: 'Volunteer',
-      url: '/volunteer-history',
+      url: '/admin/volunteer-history',
       icon: 'fa fa-user',
     },
   ]

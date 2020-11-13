@@ -113,7 +113,7 @@ class ForgotPass extends Component {
         this.changeShow('inputOtp');
       } else {
         local.set('session', rs.data.token);
-        return this.props.history.push(`/login`);
+        return this.props.history.push(`/`);
       }
 
     } catch (err) {
@@ -129,7 +129,7 @@ class ForgotPass extends Component {
 
   }
   async login(e) {
-    return this.props.history.push(`/login`);
+    return this.props.history.push(`/`);
   }
 
   async handleAccountKitResponse(result) {

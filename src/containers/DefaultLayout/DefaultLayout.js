@@ -2,7 +2,8 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import PrivateRoute from '../PrivateRoute';
 
 
 import { AppAside,   AppBreadcrumb2 as AppBreadcrumb, AppFooter, AppHeader, AppSidebar, AppSidebarFooter, AppSidebarForm, AppSidebarHeader, AppSidebarMinimizer, AppSidebarNav } from '@coreui/react'
@@ -89,9 +90,7 @@ class DefaultLayout extends Component {
               <Suspense fallback={this.loading()}>
                 <Switch>
                   {routes.map((route, idx) => {
-                    return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
-                      <route.component {...props} />
-                    )} />)
+                    return route.component ? (<PrivateRoute key={idx} path={route.path} exact={route.exact} name={route.name} component={route.component} />)
                       : (null);
                   },
                   )}

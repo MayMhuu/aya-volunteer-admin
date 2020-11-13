@@ -3,7 +3,7 @@ import local from './local';
 import queryString from 'qs';
 import _ from 'lodash';
 import Local from './local';
-import configureStore from '../store';
+import store from '../store';
 import Swal from 'sweetalert2';
 let helper = {};
 helper.replaceAll = (str, search, replacement) => {
@@ -26,7 +26,7 @@ helper.getApiByName = (apis, name) => {
 }
 helper.showCustomModal = opts => {
     let { type, props } = opts;
-    let store = configureStore();
+    let store = store();
     return new Promise((resolve, reject) => {
         store.dispatch({
             type: 'PUSH_MODAL', data: {
@@ -42,7 +42,7 @@ helper.showCustomModal = opts => {
     // alert(content);
 }
 helper.alert = (title='',content,type="warning") => {
-    let store = configureStore();
+    let store = store();
     Swal.fire(title,content, type); // VietHx add
 
 }
@@ -145,7 +145,7 @@ helper.validateInput = (input, regex) => {
 }
 
 helper.success = content => {
-    let store = configureStore();  
+    let store = store();  
     Swal.fire({
         title: 'Success!',
         text: content,

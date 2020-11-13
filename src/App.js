@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 // Styles
@@ -19,24 +19,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './index.css';
 import './scss/_custom.scss';
-import Login from './views/Login/AdminLogin';
+import AdminLogin from './views/Login/AdminLogin';
 import { DefaultLayout } from './containers';
-import  RegisterLayout  from './containers/RegisterLayout/RegisterLayout';
+import RegisterLayout from './containers/RegisterLayout/RegisterLayout';
+import { Provider } from 'react-redux';
+import store from './store';
+import {loadUser} from './actions/auth'
 
 
-class App extends Component {
-  render() {
+
+const App = () =>  {
+ // useEffect(() => { store.dispatch(loadUser()); }, []);
     return (
-      <HashRouter>
-        <Switch>
-          <Route exact path="/login" name="Login Page" component={Login} />
-          <Route path="/admin" name="Admin" component={DefaultLayout} />
-          <Route path="/" name="Home" component={RegisterLayout} />
-
-        </Switch>
-      </HashRouter>
+      <Provider store ={store}>
+        <HashRouter>
+          <Switch>
+            <Route exact path="/" name="Login Page" component={AdminLogin} />
+            <Route path="/admin" name="Admin" component={DefaultLayout} />
+            <Route path="/vol" name="Home" component={RegisterLayout} />
+          </Switch>
+        </HashRouter>
+      </Provider>
     );
-  }
 }
 
 export default App;

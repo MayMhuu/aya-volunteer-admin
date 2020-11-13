@@ -17,7 +17,7 @@ const RegisterLayout = () => {
                         : (null);
                 },
                 )}
-                <Redirect from="/" to="/vol/register" />
+                <Redirect from="/vol" to="/vol/register" />
             </Switch>
         </div>
     )
